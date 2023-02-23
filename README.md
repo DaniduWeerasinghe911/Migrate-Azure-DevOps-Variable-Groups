@@ -1,3 +1,25 @@
+# PowerShell Script - Import Azure DevOps Variable Groups
+
+## Description
+This scripts exports and imports variables from CSV files located in a specified directory into Azure DevOps variable groups. The script assumes that each CSV file represents a variable group, and the name of the CSV file is the ID of the variable group.
+
+## Author
+[Danidu Weerasinghe](https://github.com/DaniduWeerasinghe911)
+
+## Usage
+1. Modify the `folderPath` variable to specify the directory where the CSV files are located.
+2. Run the script in a PowerShell console.
+
+## Requirements
+- Azure PowerShell module (Az)
+- An Azure DevOps organization with appropriate permissions to manage variable groups
+
+## Inputs
+- `folderPath` - A string representing the directory path where CSV files are located.
+
+## Outputs
+- The script will create or update the variable groups in Azure DevOps with the variables specified in the CSV files.
+
 # Migrate-Azure-DevOps-Variable-Groups
 This Repo Include PowerShell Scripts relating to Migrating Azure DevOps Variable Groups
 
@@ -12,17 +34,21 @@ https://learn.microsoft.com/en-us/cli/azure/azure-cli-reference-for-devops
 
 **Step 1**
 
-Update the import powershell script with required parameters
+## Parameters
 
-1. $devOpsOrgUrl = ''
+| Parameter Name | Description |
+| --- | --- |
+| `devOpsOrgUrl` | The URL of the Azure DevOps organization to connect to |
+| `sourceProject` | The name of the source project to copy the variable groups from |
+| `targetProject` | The name of the target project to copy the variable groups to |
+| `groupOutputPath` | The path to save the list of variable group IDs and names as a CSV file |
+| `VariablePath` | The path to save the exported variable group variables as CSV files |
 
-2. $sourceProject = ''
+## Usage
 
-3. $targetProject = ''
-
-4. $groupOutputPath = 'D:\temp\sample-output.csv
-
-5. $VariablePath = 'D:\temp\'
+```powershell
+./<Script Name>.ps1 -devOpsOrgUrl "<devOpsOrgUrl>" -sourceProject "<sourceProject>" -targetProject "<targetProject>" -groupOutputPath "<groupOutputPath>" -VariablePath "<VariablePath>" 
+```
 
 Export Script will export all the varible groups into one csv file as per in the 4th varible and also export all the varibles in the varible groups into seperate files with varible group ID as per in the 5th parameter locations.
 
@@ -41,3 +67,9 @@ As per our requirment, we had to update the exported excel sheet by adding the t
 Once all the groups are updated with target group Id.
 
 Update the Parameter to on the import script to reflect the folder path where the update files are located
+
+## Example
+```powershell
+$folderPath = 'C:\VariableGroups'
+Import-AzDevOpsVariableGroups -FolderPath $folderPath
+```

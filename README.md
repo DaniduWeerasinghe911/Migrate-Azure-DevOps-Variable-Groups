@@ -28,5 +28,16 @@ Export Script will export all the varible groups into one csv file as per in the
 
 **Step 2**
 
-In our case we had to upload them into new Varible groups with seperate names, So prior to uploading the varible, we had to create the new groups in the new Devops project manually. But if you would like to create them using the same name by all means it can be easily achived using the
+In our case we had to upload them into new Varible groups with seperate names, So prior to uploading the varible, we had to create the new groups in the new Devops project manually. But if you would like to create them using the same name by all means it can be easily achived using the az cli devops commands
 
+As per our requirment, we had to update the exported excel sheet by adding the target varible group id into each row with a varible under a new colum name
+
+![azurearchitecture-Landing-Zones.jpg](./images/1.png)
+
+
+
+**Step 3**
+
+Once all the groups are updated with target group Id.
+
+Update the Parameter to on the import script to reflect the folder path where the update files are located
